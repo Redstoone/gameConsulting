@@ -1,6 +1,31 @@
 <?php if(!defined("PHPOK_SET")){exit("<h1>Access Denied</h1>");} ?><?php $this->assign("highlight","1"); ?><?php $this->output("head","file"); ?>
 
 <section class="main">
+	
+	<div class="am-panel am-panel-default mt10" style="padding: 0 15px;margin-top: 20px !important;">
+		<div class="am-panel-bd gtype g-hot">
+			<span>爆款</span>
+			<?php $list = phpok('gtype_hot');?>
+			<?php $list_rslist_id["num"] = 0;$list['rslist']=is_array($list['rslist']) ? $list['rslist'] : array();$list_rslist_id = array();$list_rslist_id["total"] = count($list['rslist']);$list_rslist_id["index"] = -1;foreach($list['rslist'] as $key=>$value){ $list_rslist_id["num"]++;$list_rslist_id["index"]++; ?>
+				<a href="<?php echo $value['link'];?>" target="<?php echo $value['target'];?>" title="<?php echo $value['title'];?>"><?php echo $value['title'];?></a>
+			<?php } ?>
+		</div>
+		<div class="am-panel-bd gtype g-new">
+			<span>最新</span>
+			<?php $list = phpok('gtype_new');?>
+			<?php $list_rslist_id["num"] = 0;$list['rslist']=is_array($list['rslist']) ? $list['rslist'] : array();$list_rslist_id = array();$list_rslist_id["total"] = count($list['rslist']);$list_rslist_id["index"] = -1;foreach($list['rslist'] as $key=>$value){ $list_rslist_id["num"]++;$list_rslist_id["index"]++; ?>
+				<a href="<?php echo $value['link'];?>" target="<?php echo $value['target'];?>" title="<?php echo $value['title'];?>"><?php echo $value['title'];?></a>
+			<?php } ?>
+		</div>
+		<div class="am-panel-bd gtype g-classic">
+			<span>经典</span>
+			<?php $list = phpok('gtype_classic');?>
+			<?php $list_rslist_id["num"] = 0;$list['rslist']=is_array($list['rslist']) ? $list['rslist'] : array();$list_rslist_id = array();$list_rslist_id["total"] = count($list['rslist']);$list_rslist_id["index"] = -1;foreach($list['rslist'] as $key=>$value){ $list_rslist_id["num"]++;$list_rslist_id["index"]++; ?>
+				<a href="<?php echo $value['link'];?>" target="<?php echo $value['target'];?>" title="<?php echo $value['title'];?>"><?php echo $value['title'];?></a>
+			<?php } ?>
+		</div>
+	</div>
+
 	<div class="am-g am-g-collapse">
 		<div class="am-u-lg-5">
 			<?php $list = phpok('picplayer');?>

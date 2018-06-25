@@ -1,2 +1,0 @@
-<?php die('forbidden'); ?>
-a:13:{s:2:"id";s:0:"";s:3:"pid";s:3:"142";s:9:"parent_id";s:0:"";s:5:"title";s:0:"";s:4:"link";s:0:"";s:6:"target";s:5:"_self";s:3:"tel";s:0:"";s:6:"status";s:1:"1";s:6:"hidden";s:1:"0";s:8:"dateline";s:0:"";s:4:"hits";s:0:"";s:8:"integral";s:0:"";s:4:"sort";s:0:"";}
