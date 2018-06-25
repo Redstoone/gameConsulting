@@ -1,0 +1,32 @@
+<!-- include tpl=head -->
+<style type="text/css">
+div.txt{line-height:30px;overflow:hidden;font-weight:bold;text-indent:1em;}
+</style>
+<div class="tips">
+	{lang您当前的位置：}
+	<a href="{url ctrl=opt/}">{lang选项维护}</a>
+	&raquo; {lang选项组维护（维护扩展表单的多项选择属性，包括复选框，单选框，下拉菜单等）}
+	<!-- if $popedom.set -->
+	<div class="action"><a href="javascript:$.admin_opt.opt_import();void(0);">{lang导入项目}</a></div>
+	<div class="action"><a href="javascript:$.admin_opt.group_add();void(0);">{lang添加新组}</a></div>
+	<!-- /if -->
+</div>
+<div style="margin:0 5px;">
+<ul class="attrlist">
+	<!-- loop from=$rslist key=$key value=$value id=$tmpid -->
+	<li>
+		<div class="txt">{$value.title}</div>
+		<div class="button-group">
+			<input type="button" value="{lang内容}" onclick="$.admin_opt.opt_list('{$value.id}')" class="phpok-btn" />
+			<!-- if $popedom.set -->
+			<input type="button" value="{lang导入}" onclick="$.admin_opt.opt_import('{$value.id}')" class="phpok-btn" />
+			<!-- if $value._export --><input type="button" value="{lang导出}" onclick="$.admin_opt.opt_export('{$value.id}',true)" class="phpok-btn" /><!-- /if -->
+			<input type="button" value="{lang编辑}" onclick="$.admin_opt.group_edit('{$value.id}','{$value.title}')" class="phpok-btn" />
+			<input type="button" value="{lang删除}" onclick="$.admin_opt.group_delete('{$value.id}','{$value.title}')" class="phpok-btn" />
+			<!-- /if -->
+		</div>
+	</li>
+	<!-- /loop -->
+</ul>
+</div>
+<!-- include tpl=foot -->

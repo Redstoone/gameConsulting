@@ -1,0 +1,126 @@
+<!-- inc:head_open -->
+<script type="text/javascript">
+function save()
+{
+	var oldpass = $("#oldpass").val();
+	if(!oldpass){
+		$.dialog.alert(p_lang('旧密码不能为空'));
+		return false;
+	}
+	var old = "{$rs.account}";
+	var name = $("#name").val();
+	var relogin = false;
+	if(name && old != name){
+		var qc = confirm(p_lang("确定要修改您的管理员信息吗？\n修改后需要重新登录才能生效"));
+		if(qc == '0'){
+			return false;
+		}
+		relogin = true;
+	}
+	var newpass = $("#newpass").val();
+	if(newpass){
+		var chkpass = $("#chkpass").val();
+		if(newpass != chkpass){
+			$.dialog.alert("两次输入的密码不一致");
+			return false;
+		}
+	}
+	var opener = $.dialog.opener;
+	$("#post_save").ajaxSubmit({
+		'url':get_url('me','submit'),
+		'type':'post',
+		'dataType':'json',
+		'success':function(rs){
+			if(rs.status){
+				$.dialog.alert('管理员信息操作成功',function(){
+					if(relogin){
+						opener.$.phpok.go(get_url('logout'));
+						return true;
+					}
+					opener.$.phpok.reload();
+				},'succeed');
+				return true;
+			}
+			$.dialog.alert(rs.info);
+			return false;
+		}
+	});
+}
+</script>
+<form method="post" id="post_save" onsubmit="return false">
+<div class="table">
+	<div class="title">
+		{lang管理员密码验证}
+		<span class="note">{lang请输入密码以验证您的身份合法性}</span>
+	</div>
+	<div class="content">
+		<input type="password" id="oldpass" name="oldpass" class="default" value="" />
+	</div>
+</div>
+<div class="table">
+	<div class="title">
+		{lang管理员账号}
+		<span class="note">{lang请慎用修改管理员账号，修改后要求重新登录}</span>
+	</div>
+	<div class="content">
+		<input type="text" id="name" name="name" class="default" value="{$rs.account}" />
+	</div>
+</div>
+<div class="table">
+	<div class="title">
+		{lang管理员姓名}
+		<span class="note">{lang请填写管理员的姓名，姓名为空时使用账号作姓名}</span>
+	</div>
+	<div class="content">
+		<input type="text" id="fullname" name="fullname" class="default" value="{$rs.fullname}" />
+	</div>
+</div>
+<div class="table">
+	<div class="title">
+		{lang邮箱}
+		<span class="note">{lang用于接收邮件通知，不设置表示不接收邮件通知，建议您设置有效的邮箱}</span>
+	</div>
+	<div class="content">
+		<input type="text" id="email" name="email" class="default" value="{$rs.email}" />
+	</div>
+</div>
+<div class="table">
+	<div class="title">
+		{lang新密码}
+		<span class="note">{lang请输入新的密码，长度不能少于5位，建议字母+数字组合}</span>
+	</div>
+	<div class="content">
+		<input type="password" id="newpass" name="newpass" class="default" value="" />
+	</div>
+</div>
+<div class="table">
+	<div class="title">
+		{lang验证密码}
+		<span class="note">{lang请再次输入密码}</span>
+	</div>
+	<div class="content">
+		<input type="password" id="chkpass" name="chkpass" class="default" value="" />
+	</div>
+</div>
+<div class="table">
+	<div class="title">
+		{lang关闭窗口弹出提示}
+		<span class="note">{lang如不提示，请留空！此项可有效防止误关窗口}</span>
+	</div>
+	<div class="content">
+		<input type="text" id="close_tip" name="close_tip" class="default" value="{$rs.close_tip}" />
+	</div>
+</div>
+<div class="table">
+	<div class="title">
+		{lang开发模式} <span class="note">{lang每次登录成功后，都需要单独设置是否启用开发模式，只有启用开发模式才支持自定义扩展字段}</span>
+	</div>
+	<div class="content">
+		<ul class="layout">
+			<li><label><input type="radio" name="adm_develop" value="0"{if !$session.adm_develop} checked{/if} />禁用</label></li>
+			<li><label><input type="radio" name="adm_develop" value="1"{if $session.adm_develop} checked{/if} />启用</label></li>
+		</ul>
+	</div>
+</div>
+</form>
+<!-- inc:foot_open -->

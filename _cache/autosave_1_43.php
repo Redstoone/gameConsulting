@@ -1,0 +1,2 @@
+<?php die('forbidden'); ?>
+a:20:{s:2:"id";s:0:"";s:3:"pid";s:2:"43";s:9:"parent_id";s:0:"";s:5:"title";s:0:"";s:10:"identifier";s:0:"";s:7:"cate_id";s:2:"68";s:3:"tag";s:0:"";s:5:"thumb";s:0:"";s:4:"file";s:0:"";s:4:"note";s:0:"";s:6:"status";s:1:"1";s:6:"hidden";s:1:"0";s:8:"dateline";s:0:"";s:4:"hits";s:0:"";s:8:"integral";s:0:"";s:4:"sort";s:0:"";s:7:"user_id";s:0:"";s:9:"seo_title";s:0:"";s:12:"seo_keywords";s:0:"";s:8:"seo_desc";s:0:"";}

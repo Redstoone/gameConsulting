@@ -1,0 +1,49 @@
+<!-- php:$title = "收藏夹 - 会员中心" --><!-- include tpl=head title=$title -->
+<script type="text/javascript">
+function fav_delete(id)
+{
+	$.dialog.confirm('确定要删除这条收藏记录吗？',function(){
+		var url = api_url('fav','delete','id='+id);
+		$.phpok.json(url,function(){
+			$.phpok.reload();
+		});
+	})
+}
+</script>
+<div class="main">
+	<!-- include tpl=block/breadcrumb -->
+	<div class="left"><!-- include tpl=block/usercp_nav --></div>
+	<div class="right">
+		<div class="am-panel am-panel-default">
+			<div class="am-panel-hd">收藏夹</div>
+			<table class="am-table am-table-striped am-table-hover am-table-centered">
+				<thead>
+					<tr>
+						<th class="am-text-left">主题</th>
+						<th>收藏时间</th>
+						<th width="120">&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- loop from=$rslist key=$key value=$value id=$tmpid -->
+					<tr>
+						<td class="am-text-left">{$value.title}</td>
+						<td>{func time_format $value.addtime}</td>
+						<td>
+							<div class="am-btn-group">
+								<button type="button" onclick="$.phpok.open('{url id=$value.lid/}')" class="am-btn am-btn-default am-btn-xs">访问</button>
+								<button type="button" onclick="fav_delete('{$value.id}')" class="am-btn am-btn-danger am-btn-xs">删除</button>
+							</div>
+						</td>
+					</tr>
+					<!-- /loop -->
+				</tbody>
+			</table>
+		</div>
+		
+		<!-- include tpl=block/pagelist -->
+	</div>
+	<div class="clear"></div>
+</div>
+
+<!-- include tpl=foot -->

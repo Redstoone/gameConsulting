@@ -1,0 +1,46 @@
+<!-- include tpl=head_open -->
+<link rel="stylesheet" href="js/codemirror/codemirror.css">
+<script type="text/javascript" src="js/codemirror/codemirror.js"></script>
+<style type="text/css">
+.CodeMirror{border:1px solid #ccc;}
+.CodeMirror-scroll{width:100%;height:100%;}
+</style>
+<script type="text/javascript">
+var code_editor,delay
+$(document).ready(function(){
+	code_editor = CodeMirror.fromTextArea(document.getElementById("content"),{
+		lineNumbers		: true,
+		matchBrackets	: true,
+		lineWrapping	: true,
+		indentWithTabs	: true,
+		indentUnit		: 4
+	});
+});
+function save()
+{
+	var opener = $.dialog.opener;
+	code_editor.save();
+	$("#post_save").ajaxSubmit({
+		'url':get_url('tpl','edit_save'),
+		'type':'post',
+		'dataType':'json',
+		'success':function(rs){
+			if(rs.status){
+				$.dialog.tips('{lang代码保存成功}').position('49%','10px')
+				return true;
+			}
+			$.dialog.alert(rs.info);
+			return false;
+		}
+	});
+}
+</script>
+<form method="post" id="post_save" onsubmit="return false">
+<input type="hidden" name="id" value="{$id}" />
+<input type="hidden" name="folder" value="{$folder}" />
+<input type="hidden" name="title" value="{$title}" />
+<div style="margin-top:3px;">
+	<textarea id="content" name="content">{$content}</textarea>
+</div>
+</form>
+<!-- include tpl=foot_open -->

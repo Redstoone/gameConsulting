@@ -1,0 +1,40 @@
+<!-- include tpl=head -->
+<div class="tips">
+	<!-- if $popedom.set -->
+	<div class="action"><a href="{url ctrl=tpl func=set/}">{lang添加风格}</a></div>
+	<!-- /if -->
+	&raquo; {lang风格方案管理}{lang（风格管理支持多站点运行，手机版请在此风格文件夹名称上输入_mobile）}
+</div>
+<div class="list">
+	<table width="100%" cellpadding="0" cellspacing="0" class="list">
+	<tr>
+		<th>ID</th>
+		<th>{lang名称}</th>
+		<th>{lang目录}</th>
+		<th>{lang文件夹改写}</th>
+		<th>&nbsp;</th>
+	</tr>
+	<!-- loop from=$rslist key=$key value=$value -->
+	<tr>
+		<td align="center">{$value.id}</td>
+		<td>{$value.title}<!-- if $value.author --> <span class="gray i">（{$value.author}）</span><!-- /if --></td>
+		<td align="center">tpl/{$value.folder}/</td>
+		<td align="center">{$value.folder_change ? $value.folder_change : '空'}</td>
+		<td align="right">
+			<div class="button-group">
+				<!-- if $popedom.filelist -->
+				<input type="button" value="{lang文件管理}" onclick="$.admin_tpl.tpl_filelist({$value.id})" class="phpok-btn" />
+				<!-- /if -->
+				<!-- if $popedom.set -->
+				<input type="button" value="{lang编辑}" onclick="$.admin_tpl.tpl_set({$value.id})" class="phpok-btn" />
+				<!-- /if -->
+				<!-- if $popedom.delete -->
+				<input type="button" value="{lang删除}" onclick="$.admin_tpl.tpl_delete({$value.id},'{$value.title}')" class="phpok-btn" />
+				<!-- /if -->
+			</div>
+		</td>
+	</tr>
+	<!-- /loop -->
+	</table>
+</div>
+<!-- include tpl=foot -->

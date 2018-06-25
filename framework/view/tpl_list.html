@@ -1,0 +1,56 @@
+<!-- include tpl=head -->
+<div class="tips">
+	<div class="action"><a href="{url ctrl=tpl/}">返回风格方案</a></div>
+	<div class="action"><a href="javascript:$.admin_tpl.add_folder('{$id}','{$folder}')">创建文件夹</a></div>
+	<div class="action"><a href="javascript:$.admin_tpl.add_file('{$id}','{$folder}','{$rs.ext}')">创建模板文件</a></div>
+	风格：<span class="red">{$rs.title}</span>，
+	当前路径：<span class="red">{$folder}</span>
+	<!-- if $folder != "/" -->
+	，<a href="{echo admin_url('tpl','list')}&id={$id}" title="返回根目录">点此返回根目录</a>
+	<!-- /if -->
+</div>
+<div class="tips">要实现在线编辑和上传功能，请确保 <span class="red">tpl/{$rs.folder}{$folder}</span> 下的文件有写入权限</div>
+<div class="list">
+<table class="list" width="100%" cellpadding="0" cellspacing="0">
+<tr>
+	<th width="40px">类型</th>
+	<th>名称</th>
+	<th>时间</th>
+	<th>&nbsp;</th>
+</tr>
+<!-- loop from=$dirlist key=$key value=$value -->
+<tr>
+	<td align="center"><img src="images/filetype/dir.gif" border="0" alt="文件夹：{$value.title}"></td>
+	<td class="lft" colspan="2">{$value.title}</td>
+	<td align="right">
+		<div class="button-group">
+			<input type="button" value="改名" onclick="$.admin_tpl.folder_rename('{$id}','{$folder}','{$value.title}')" class="phpok-btn" />
+			<input type="button" value="进入" onclick="direct('{$value.url}')" class="phpok-btn" />
+			<input type="button" value="删除" class="phpok-btn" onclick="$.admin_tpl.del('{$id}','{$folder}','{$value.title}')" />
+		</div>
+	</td>
+</tr>
+<!-- /loop -->
+<!-- loop from=$rslist key=$key value=$value -->
+<tr>
+	<td align="center"><img src="images/filetype/{$value.type}.gif" border="0" alt="文件：{$value.title}"></td>
+	<td class="lft">{$value.title}</td>
+	<td align="center" class="gray">{$value.date}</td>
+	<td align="right">
+		<div class="button-group">
+			<input type="button" value="改名" onclick="$.admin_tpl.file_rename('{$id}','{$folder}','{$value.title}')" class="phpok-btn" />
+			<!-- if in_array($value.type,$edit_array) -->
+			<input type="button" value="编辑" onclick="$.admin_tpl.edit('{$id}','{$folder}','{$value.title}')" class="phpok-btn" />
+			<!-- elseif in_array($value.type,$pic_array) -->
+			<input type="button" value="查看" onclick="$.admin_tpl.view('tpl/{$rs.folder}{$folder}{$value.title}')" class="phpok-btn" />
+			<!-- else -->
+			<input type="button" value="下载" onclick="$.admin_tpl.download('{$id}','{$folder}','{$value.title}')" class="phpok-btn" />
+			<!-- /if -->
+			<input type="button" value="删除" onclick="$.admin_tpl.del('{$id}','{$folder}','{$value.title}')" class="phpok-btn" />
+		</div>
+	</td>
+</tr>
+<!-- /loop -->
+</table>
+</div>
+<!-- include tpl=foot -->
