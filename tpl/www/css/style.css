@@ -251,5 +251,5 @@ div.attr.selected{border:1px solid red;}
 .g-hot span{background-color: #ff5c00;}
 .g-new span{background-color: #0d8aea;}
 .g-classic span{background-color: #c41e1e;}
-.gtype a{width: 50px;display: inline-block;margin-left: 10px;font-size: 13px;}
+.gtype a{width: 60px;display: inline-block;margin-left: 10px;font-size: 13px;}
 .gtype a:hover{text-decoration: underline;}
