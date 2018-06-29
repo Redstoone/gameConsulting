@@ -26,7 +26,7 @@
 		</div>
 	</div>
 
-	<div class="am-g am-g-collapse">
+	<div class="am-g am-g-collapse" style="margin-top:10px;">
 		<div class="am-u-lg-5">
 			<?php $list = phpok('picplayer');?>
 			<?php if($list['total']){ ?>
@@ -71,7 +71,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="am-g am-g-collapse block-box" style="margin-top:20px;">
+	<div class="am-g am-g-collapse block-box" style="margin-top:10px;">
 		<div class="am-u-lg-4" >
 			<div class="am-panel am-panel-default" style="padding: 0 15px;">
 				<div class="am-panel-hd">
@@ -144,7 +144,7 @@
 		</div>
 	</div>
 
-	<div class="ad-wrap">
+	<div class="ad-wrap" style="margin-top:20px;">
 		<?php $list = phpok('adplayer');?>
 			<?php if($list['total']){ ?>
 			<div class="banner adbanner">
